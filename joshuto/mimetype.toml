@@ -1,0 +1,44 @@
+# specify which applications to use to open certain file types
+[mimetype]
+
+[[mimetype.text]]
+program = "nvim"
+
+[[mimetype.text]]
+program = "bat"
+
+[[mimetype.audio]]
+program = "mpv"
+
+[[mimetype.video]]
+program = "mpv"
+fork = true
+silent = true
+
+[[mimetype.image]]
+program = "imv"
+fork = true
+silent = true
+
+
+
+[extension]
+
+[[extension.tex]]
+program = "nvim"
+[[extension.tex]]
+program = "mupdf"
+
+[[extension.7z]]
+program = "file-roller"
+fork = true
+silent = true
+
+[[extension.odt]]
+program = "libreoffice"
+fork = true
+silent = true
+
+[[extension.rar]]
+program = "unrar"
+args = [ "e" ]

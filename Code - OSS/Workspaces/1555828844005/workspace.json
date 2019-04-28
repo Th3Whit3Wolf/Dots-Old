@@ -1,0 +1,23 @@
+{
+	"folders": [
+		{
+			"path": "/home/doc/Code/Vim/SS-Vim/misc"
+		},
+		{
+			"path": "/home/doc/.config/waybar_bottom"
+		},
+		{
+			"path": "/home/doc/.config/sway"
+		},
+		{
+			"path": "/home/doc/.shell/scripts"
+		},
+		{
+			"path": "/home/doc/.config/youtube-dl"
+		},
+		{
+			"path": "/home/doc/.shell"
+		}
+	],
+	"settings": {}
+}

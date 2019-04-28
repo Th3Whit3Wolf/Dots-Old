@@ -1,0 +1,87 @@
+* {
+    border: none;
+    border-radius: 0;
+    font-weight: 900;
+    font-size: 14px;
+    font-family: "Font Awesome 5 Brands-Regular-400";
+    min-height: 0;
+}
+
+window#waybar {
+    background: transparent;
+}
+
+window > box {
+    margin: 5 10 10 10px;
+    background: transparent;
+    color: inherit;
+}
+
+#custom-right-arrow-dark, #custom-left-arrow-dark {
+    color: #1a1a1a;
+}
+
+#custom-right-arrow-light, #custom-left-arrow-light {
+    color: #292b2e;
+    background: #1a1a1a;
+}
+
+#workspaces {
+    background: transparent;
+}
+
+/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+#workspaces button {
+    padding: 0 0px;
+    margin: 0px;
+    background: #5d4d7a;
+    color: #827591;
+    border-top: 2px solid #5d4d7a;
+    border-bottom: 1px solid #5d4d7a;
+}
+
+#workspaces button:hover {
+    padding: 0 0px;
+    background: #6f5f8c;
+}
+
+#workspaces button.focused {
+    padding: 0 0px;
+    color: #a3a3a3;
+}
+
+#mode {
+    padding: 0 3px;
+    background: transparent;
+    color: #5d4d7a;
+}
+
+#custom-left-curve, #custom-right-curve, #custom-right-curve-end {
+    color: #5d4d7a;
+    background-color: transparent;
+}
+
+#custom-right-curve {
+    padding: 0 20 0 0px;
+}
+
+#custom-updates,#battery, #network, #backlight, #pulseaudio, #clock, #cpu, #memory, #temperature, #pulseaudio{
+    color: #a3a3a3;
+    background-color: #5c4c7a;
+}
+
+#custom-power {
+    color: #292b2e;
+    background-color: #5c4c7a;
+}
+
+#custom-percent, #custom-seperator {
+    color: #827591;
+    background-color: #5c4c7a;
+}
+
+
+#window {
+    color: #a3a3a3;
+    background-color: #5d4d7a;
+}

@@ -1,0 +1,1 @@
+compgen -c | sort -u | fzf --print-query | tail -n 1 | xargs -r swaymsg -t command exec 

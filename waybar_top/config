@@ -1,0 +1,312 @@
+// vim:ft=json
+
+{
+	"layer": "top", // Waybar at top layer
+	"position": "top", // Waybar position (top|bottom|left|right)
+	"height": 20, // Waybar height
+	//"width": 1346, // Waybar width
+	// Choose the order of the modules idle_inhibitor
+	"modules-left": [
+		"custom/left-curve",
+		"sway/workspaces",
+		"custom/right-curve",
+		"sway/mode",
+		"custom/left-curve",
+		"cpu",
+		"custom/percent",
+		"custom/seperator",
+		"memory",
+		"custom/percent",
+		"custom/right-curve"
+	],
+	"modules-center": ["custom/left-curve", "sway/window", "custom/right-curve"],
+	"modules-right": [
+		"custom/left-curve",
+		"custom/updates",
+		"custom/right-curve",
+		"custom/left-curve",
+		"network",
+		"battery",
+		"custom/right-curve",
+		"custom/left-curve",
+		"clock",
+		"custom/seperator",
+		"clock#clock2",
+		"custom/power",
+		"custom/right-curve-end"
+	],
+	// Modules configuration
+	"sway/workspaces": {
+		"disable-scroll": true,
+		"all-outputs": true,
+		"format": "{icon}"
+		//"format-icons": {
+		//"1:web": "",
+		//"2:code": "",
+		//"3:term": "",
+		//"4:work": "",
+		//"5:music": "",
+		//"6:docs": "",
+		//"1": "⠁",
+		//"2": "⠃",
+		//"3": "⠉",
+		//"4": "⠙",
+		//"5": "⠑",
+		//"6": "⠋",
+		//"7": "⠛",
+		//"8": "⠓",
+		//"9": "⠊",
+		//"10": "⠚"
+		//"1": "一", // Replace "一" with your icon
+		//"2": "二",
+		//"3": "三",
+		//"4": "四",
+		//"5": "五",
+		//"6": "六",
+		//"7": "七",
+		//"8": "八",
+		//"9": "九",
+		//"10": "十",
+		//"urgent": "",
+		//"focused": "",
+		//"default": ""
+		//"1": "⠁",
+		//"2": "⠃",
+		//"3": "⠉",
+		//"4": "⠙",
+		//"5": "⠑",
+		//"6": "⠋",
+		//"7": "⠛",
+		//"8": "⠓",
+		//"9": "⠊",
+		//"10": "⠚"
+		//}
+	},
+	"sway/mode": {
+		"format": "<span style=\"italic\">{}</span>"
+		//"max-length": 50,
+		//"on-click": "command",
+		//"on-click-right": "command",
+		//"on-scroll-up": "command",
+		//"on-scroll-down": "command",
+		//"tooltip": "command",
+	},
+	"sway/windows": {
+		"format": "{}",
+		"max-length": 20,
+		"on-click": "command",
+		"on-click-right": "command",
+		"on-scroll-up": "command",
+		"on-scroll-down": "command",
+		"tooltip": "command"
+	},
+	"idle_inhibitor": {
+		"format": "{icon}",
+		"format-icons": {
+			"activated": "",
+			"deactivated": ""
+			//"max-length": 50,
+			//"on-click": "command",
+			//"on-click-right": "command",
+			//"on-scroll-up": "command",
+			//"on-scroll-down": "command",
+			//"tooltip": "command",
+		}
+	},
+	"tray": {
+		"icon-size": 21,
+		"spacing": 10
+	},
+	"clock": {
+		//"interval": 60 //default, no need to change
+		"tooltip-format": "{:Time: %l:%M %P  \nDay: %A \nDate: %B %-d, %Y}",
+		"format": "{:%a %h, %-d}"
+		//"max-length": 200,
+		//"on-click-right": "command",
+		//"on-scroll-up": "command",
+		//"on-scroll-down": "command",
+	},
+	"clock#clock2": {
+		//"interval": 3600 //default, no need to change
+		"tooltip-format": "{:Time: %l:%M %P  \nDay: %A \nDate: %B %-d, %Y}",
+		"format": "{:%l:%M %P }"
+	},
+	"cpu": {
+		"interval": 1,
+		"format": "<span color=\"#a3a3a3\">CPU</span><span color=\"#827591\">: </span><span color=\"#a3a3a3\">{usage}</span>"
+		//"max-length": 50,
+		//"on-click": "command",
+		//"on-click-right": "command",
+		//"on-scroll-up": "command",
+		//"on-scroll-down": "command",
+		//"tooltip": "command",
+	},
+	"memory": {
+		"interval": 1,
+		"format": "<span color=\"#a3a3a3\">RAM</span><span color=\"#827591\">: </span><span color=\"#a3a3a3\">{}</span>"
+		//"max-length": 50,
+		//"on-click": "command",
+		//"on-click-right": "command",
+		//"on-scroll-up": "command",
+		//"on-scroll-down": "command",
+		//"tooltip": "command",
+	},
+	"temperature": {
+		// "thermal-zone": 2,
+		// "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+		"critical-threshold": 80,
+		// "format-critical": "{temperatureC}°C ",
+		"format": "{temperatureC}°C "
+		//"interval": 10,
+		//"max-length": 50,
+		//"on-click": "command",
+		//"on-click-right": "command",
+		//"on-scroll-up": "command",
+		//"on-scroll-down": "command",
+		//"tooltip": "command",
+	},
+	"backlight": {
+		// "device": "acpi_video1",
+		"format": " \uf0eb {percent}%  "
+		//"format-icons": ["\ufbe7", ""]
+		//"max-length": 50,
+		//"on-click": "command",
+		//"on-click-right": "command",
+		//"on-scroll-up": "command",
+		//"on-scroll-down": "command",
+	},
+	"battery": {
+		"states": {
+			"b0": 0,
+			"b10": 10,
+			"b20": 20,
+			"b30": 30,
+			"b40": 40,
+			"b50": 50,
+			"b60": 60,
+			"b70": 70,
+			"b80": 80,
+			"b90": 90,
+			"b95": 95
+		},
+		"format-b0": "<span color=\"#292b2e\">\uf582 </span><span color=\"#a3a3a3\">{capacity}</span>",
+		"format-b10": "<span color=\"#292b2e\">\uf579 </span><span color=\"#a3a3a3\">{capacity}</span>",
+		"format-b20": "<span color=\"#292b2e\">\uf57a </span><span color=\"#a3a3a3\">{capacity}</span>",
+		"format-b30": "<span color=\"#292b2e\">\uf57b </span><span color=\"#a3a3a3\">{capacity}</span>",
+		"format-b40": "<span color=\"#292b2e\">\uf57c </span><span color=\"#a3a3a3\">{capacity}</span>",
+		"format-b50": "<span color=\"#292b2e\">\uf57d </span><span color=\"#a3a3a3\">{capacity}</span>",
+		"format-b60": "<span color=\"#292b2e\">\uf57e </span><span color=\"#a3a3a3\">{capacity}</span>",
+		"format-b70": "<span color=\"#292b2e\">\uf57f </span><span color=\"#a3a3a3\">{capacity}</span>",
+		"format-b80": "<span color=\"#292b2e\">\uf580 </span><span color=\"#a3a3a3\">{capacity}</span>",
+		"format-b90": "<span color=\"#292b2e\">\uf581 </span><span color=\"#a3a3a3\">{capacity}</span>",
+		"format-b95": "<span color=\"#292b2e\">\uf578 </span><span color=\"#a3a3a3\">{capacity}</span>",
+		"format-charging-b20": "<span color=\"#292b2e\">\uf585 </span><span color=\"#a3a3a3\">{capacity}</span>",
+		"format-charging-b30": "<span color=\"#292b2e\">\uf586 </span><span color=\"#a3a3a3\">{capacity}</span>",
+		"format-charging-b40": "<span color=\"#292b2e\">\uf587 </span><span color=\"#a3a3a3\">{capacity}</span>",
+		"format-charging-b60": "<span color=\"#292b2e\">\uf588 </span><span color=\"#a3a3a3\">{capacity}</span>",
+		"format-charging-b80": "<span color=\"#292b2e\">\uf589 </span><span color=\"#a3a3a3\">{capacity}</span>",
+		"format-charging-b90": "<span color=\"#292b2e\">\uf58a </span><span color=\"#a3a3a3\">{capacity}</span>",
+		"format-charging-b95": "<span color=\"#292b2e\">\uf584 </span><span color=\"#a3a3a3\">{capacity}</span>"
+	},
+	"network": {
+		//"interface": "wlo1", // (Optional) To force the use of this interface
+		"format-wifi": "<span color=\"#292b2e\">\ufaa8  </span><span color=\"#a3a3a3\">{essid}</span>   ",
+		"format-ethernet": "<span color=\"#292b2e\">\uf6ff  </span><span color=\"#a3a3a3\">{ifname}</span><span color=\"#827591\">:</span>  </span><span color=\"#a3a3a3\">{ipaddr}</span><span color=\"#827591\">/</span><span color=\"#a3a3a3\">{cidr}</span>",
+		"format-disconnected": "\ufaa9",
+		"on-click": "notify-send -t 2000 \"Connected to $(iw dev wlo1 link | perl -lne 'print $1 if /SSID: (.*)/')\"",
+		"on-click-right": "notify-send -t 2000 \"Connected to $(iw dev wlo1 link | perl -lne 'print $1 if /SSID: (.*)/')\"",
+		"interval": 2
+	},
+	"pulseaudio": {
+		"scroll-step": 1,
+		"format": "  <span color=\"#292b2e\">{icon} </span><span color=\"#a3a3a3\">{volume}</span>",
+		"format-bluetooth": "  {icon} {volume}",
+		"format-muted": "\ufc5d",
+		"format-icons": {
+			"headphones": "\ufa80",
+			"handsfree": "",
+			"headset": "",
+			"phone": "\uf61c",
+			"portable": "",
+			"car": "\uf1b9",
+			"default": ["\ufa7e", "\ufa7d"]
+		},
+		"on-click": "pavucontrol"
+	},
+	"custom/spotify": {
+		"format": "\uf1bc {}",
+		"max-length": 40,
+		"escape": true,
+		"exec": "$HOME/.config/waybar/mediaplayer.sh 2> /dev/null" // Script in resources folder
+	},
+	"custom/updates": {
+		"format": "<span color=\"#292b2e\">\uf487  </span><span color=\"#a3a3a3\">{}</span>",
+		"interval": 180,
+		"exec": "$HOME/.config/scripts/updates.sh 2> /dev/null" // Script in resources folder
+	},
+	"custom/temp": {
+		"format": "  {} ",
+		"interval": 10,
+		"exec": "$HOME/.config/scripts/temp.sh 2> /dev/null"
+	},
+	"custom/root": {
+		"format": " / {} ",
+		"interval": 200,
+		"exec": "$HOME/.config/scripts/rootspace.sh 2> /dev/null"
+	},
+	"custom/home": {
+		"format": " \uf7db {} ",
+		"interval": 200,
+		"exec": "$HOME/.config/scripts/homespace.sh 2> /dev/null"
+	},
+	"custom/tmp": {
+		"format": "  {} ",
+		"interval": 10,
+		"exec": "$HOME/.config/scripts/tmpspace.sh 2> /dev/null"
+	},
+	"custom/backup": {
+		"format": " \uf19c {} ",
+		"interval": 200,
+		"exec": "$HOME/.config/scripts/backupspace.sh 2> /dev/null"
+	},
+	"custom/power": {
+		"format": " \uf011",
+		"on-click": "$HOME/.config/scripts/power.sh 2> /dev/null",
+		"tooltip": false
+	},
+	"custom/seperator": {
+		"format": "  |  ",
+		"tooltip": false
+	},
+	"custom/percent": {
+		"format": "%",
+		"tooltip": false
+	},
+	"custom/left-arrow-dark": {
+		"format": ""
+	},
+	"custom/left-curve": {
+		"format": "\ue0b6",
+		"tooltip": false
+	},
+	"custom/right-curve": {
+		"format": "\ue0b4",
+		"tooltip": false
+	},
+	"custom/right-curve-end": {
+		"format": "\ue0b4",
+		"tooltip": false
+	},
+	"custom/left-arrow-light": {
+		"format": "",
+		"tooltip": false
+	},
+	"custom/right-arrow-dark": {
+		"format": "",
+		"tooltip": false
+	},
+	"custom/right-arrow-light": {
+		"format": "",
+		"tooltip": false
+	}
+}
