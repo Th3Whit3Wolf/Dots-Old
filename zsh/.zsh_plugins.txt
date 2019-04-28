@@ -1,0 +1,19 @@
+# Autocompletion should be able to use fpath
+zsh-users/zsh-autosuggestions kind:fpath
+lukechilds/zsh-better-npm-completion kind:fpath
+fabiokiatkowski/exercism.plugin.zsh kind:fpath
+pkulev/zsh-rustup-completion kind:fpath
+zsh-users/zsh-completions kind:fpath
+
+marzocchi/zsh-notify # +4ms
+buonomo/yarn-completion kind:fpath
+walesmd/caniuse.plugin.zsh # +0ms
+hschne/fzf-git # +0ms
+romkatv/powerlevel10k
+zdharma/fast-syntax-highlighting # +7ms
+caarlos0/zsh-git-sync kind:path # +0ms
+mafredri/zsh-async # +1ms
+
+
+# Not worth it
+#MikeDacre/careful_rm #+50ms
