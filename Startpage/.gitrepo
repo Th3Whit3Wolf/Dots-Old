@@ -6,7 +6,7 @@
 [subrepo]
 	remote = git@github.com:Th3Whit3Wolf/Startpage.git
 	branch = master
-	commit = 68e163d628fd479c883855f34b7bec8187a514ae
-	parent = 19959c790740588786cad746eff9d47f89abaf7c
+	commit = c0f4e4f61d308add48057ed059b37f532d7fcaba
+	parent = 7dfd300f88647400a556d21a2d36835f24675865
 	method = merge
 	cmdver = 0.4.0
