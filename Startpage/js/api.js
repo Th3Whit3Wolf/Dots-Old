@@ -15,11 +15,12 @@ const reddit_sort = 'setsuggestedsort';
 const reddit_time = 'week'; //
 
 async function main() {
-	let ten_minutes_in_millis = 10 * 60 * 1000;
-	setIntervalAsync(setWeather, ten_minutes_in_millis);
-	setIntervalAsync(getNews, ten_minutes_in_millis);
-	setIntervalAsync(getReddits, ten_minutes_in_millis);
-	setIntervalAsync(getGits, ten_minutes_in_millis);
+	let fifteen_minutes_in_millis = 15 * 60 * 1000;
+	let one_hour_in_millis = 60 * 60 * 1000;
+	setIntervalAsync(setWeather, one_hour_in_millis);
+	setIntervalAsync(getNews, fifteen_minutes_in_millis);
+	setIntervalAsync(getReddits, fifteen_minutes_in_millis);
+	setIntervalAsync(getGits, fifteen_minutes_in_millis);
 }
 
 // setInterval function that can deal with async
@@ -125,6 +126,34 @@ async function getReddits() {
 	}
 }
 
+async function getGits() {
+	let gitData = await getGitsJson();
+	var gits = document.getElementById('git-container');
+
+	for (var i = 0; i < info_items / 2; i = i + 1) {
+		gits.innerHTML +=
+			'<div class="git-card id="github-' +
+			i +
+			'><a href="' +
+			gitData.items[i].html_url +
+			'"><div class="git-card__image-container">' +
+			'<img class="git-card__image"' +
+			' src="' +
+			gitData.items[i].owner.avatar_url +
+			'" /></div>' +
+			'<div class="git-card__content">' +
+			'<h4 class="git-card__title">' +
+			gitData.items[i].name
+				.replace(/-/g, ' ')
+				.replace(/\./g, ' ')
+				.replace(/_/g, ' ') +
+			'</h4>' +
+			'<p class="git-description">' +
+			gitData.items[i].description +
+			'</p></div></a></div>';
+	}
+}
+
 async function setWeather() {
 	let [country, postal] = await getUserLocation();
 	forecast = false;
@@ -224,28 +253,3 @@ async function setWeather() {
 }
 
 main();
-
-async function getGits() {
-	let gitData = await getGitsJson();
-	var gits = document.getElementById('git-container');
-
-	for (var i = 0; i < info_items / 2; i = i + 1) {
-		gits.innerHTML +=
-			'<div class="git-card id="github-' +
-			i +
-			'><a href="' +
-			gitData.items[i].html_url +
-			'"><div class="git-card__image-container">' +
-			'<img class="git-card__image"' +
-			' src="' +
-			gitData.items[i].owner.avatar_url +
-			'" /></div>' +
-			'<div class="git-card__content">' +
-			'<h4 class="git-card__title">' +
-			gitData.items[i].name.replace(/-/g, ' ') +
-			'</h4>' +
-			'<p class="git-description">' +
-			gitData.items[i].description +
-			'</p></div></a></div>';
-	}
-}
