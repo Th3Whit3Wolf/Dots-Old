@@ -1,56 +1,64 @@
-// Typography
+$color_1: #b2b2b2;
+$color_2: #000;
+$color_3: #64606b;
+$color_4: #cbc1d5;
+$color_5: #212026;
+$color_6: #1d1c22;
+$color_7: #292b2e;
+$color_8: transparent;
+$color_9: #5d4d7a;
+$color_10: #686868;
+$reddit_orange: #ff4500;
+$reddit_card_bg: #1a1a1b;
+$reddit_txt: #d7dadc;
+$doc-rs_dark_bg: #505050;
+$github_grey: #24292e;
+$gitlab_icon: #e24329;
+$gitlab_bg: #292961;
+$font_family: 'Fira Sans', sans-serif;
 
-$fontfamily: sofia-pro-soft, sans-serif;
+$divider-background-color: $color_9;
+$divider-thickness: .1rem;
+$divider-font-size: 0.75rem;
+$divider-color: $color_5;
+$divider-content-background-color : $reddit_orange;
 
-$body-font-size: 1rem;
+$nav_panel_bg: $color_5;
+$nav_item: $color_3;
+$nav_item_hover: $color_4;
 
-// Colors
-$primary: #5d4d7a;
-$secondary: #bc6ec5;
-$offblack: #211A1D;
+$data_ttip_bg: $color_5;
+$data_ttip_border: $color_6;
+$data_ttip_txt: $color_1;
 
-$aqua: #2d9574;
-$blue1: #4f97d7;
-$blue2: #7590db;
-$blue3: #2aa1ae;
-$blue4: #9a9aba;
-$cyan: #28def0;
-$gblue: #44505c;
+$btn_margin: calc(70% - 23px);
 
-$git-gray: #24292e;
+$body: $color_2;
+$body_bg: $color_7;
 
-$test: #2aa1ae;
+$tile_box_bg: $color_1;
+$tile_link: $color_1;
+$tile_title: $color_1;
+$tile_title_bg: $color_8;
 
+$tile-width: 188px;
+$tile-height: 120px;
+$tile-spacing: 16px;
+$title-height: 16px;
+$transition-time: .3s;
 
-$green1: #67b11d;
-$green2: #86dc2f;
-$red1: #f2241f;
-$red2: #e0211d;
-$red3: #ce537a;
-$yellow: #b1951d;
-$orange: #dc752f;
-$brown: #9f8766;
-$purple1: #3b314d;
+$menu-bar-width: 50px;
+$reddit_card_border-radius: 12px;
+$border-radius: 290486px;
 
-$magenta1: #a31db1;
-$magenta2: #c56ec3;
+$search_bar_border: $color_5;
+$search_bar: darken($color_7, 5%);
+$search_bar_txt: $color_10;
+$search_bar_icon: $body_bg;
 
-$white: #a3a3a3;
-$func: #bc6ec5;
-$act1: #222226;
-$act2: #5d4d7a;
-$bs: #222;
-$bg2: #212026;
-$Base: #b2b2b2;
-$background: #292b2e;
-$bg3: #100a14;
-$bg4: #0a0814;
+$search_bar_focus_icon: $color_4;
+$search_bar_focus_shadow: $color_9;
+$search_bar_focus_icon_bg: $search_bar_focus_shadow;
 
-$baseSize: 1.4rem;
-
-$slowDuration: 9s;
-$fastDuration: 0.3s;
-
-$bezier: cubic-bezier(0.54, -0.24, 0.46, 1.28);
-
-$b_shade:3px 3px 10px $bs;
+$rust_mode_title: $color_9;
+$rust_mode_tile_mod: 1.333333;

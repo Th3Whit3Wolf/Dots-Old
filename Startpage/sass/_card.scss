@@ -1,0 +1,106 @@
+
+
+.card {
+    background: $reddit_card_bg;
+    a {
+        color: black;
+        text-decoration: none;
+        &:hover {
+            box-shadow: 3px 3px 8px $reddit_card_bg;
+        }
+    }
+    img {
+        display: block;
+        border: 0;
+        width: #{$tile-width * 1.5};
+        max-width: #{$tile-width * 1.5};
+        max-height: #{$tile-width * 1.5/16*9};
+        height: auto;
+        border-top-left-radius: $reddit_card_border-radius;
+        border-top-right-radius: $reddit_card_border-radius;
+    }
+}
+
+.card-header {
+    text-align: center;
+    width: 80%;
+    background-color: $reddit_card_bg;
+    margin: auto;
+    padding: .25em;
+
+    .fa-thumbs-down {
+        color: #7193ff !important;
+    }
+    .fa-thumbs-up {
+        color: $reddit_orange !important;
+    }
+    .score {
+        color: #818384;
+    }
+    .subreddit {
+        width: 15%;
+        color: $reddit_txt;
+        font-size: 12px;
+        font-weight: 700;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    .postedBy {
+        color: #818384;
+        margin-right: 3px;
+        font-size: 12px;
+        font-weight: 400;
+    }
+    .author {
+        color: #818384;
+        margin-right: 2px;
+        font-size: 12px;
+        font-weight: 400;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+.card-footer {
+    text-align: center;
+    width: 80%;
+    background-color: $reddit_card_bg;
+    color: #818384;
+    margin: auto;
+    padding: .25em;
+    font-size: 12px;
+    font-weight: 400;
+    
+}
+
+.card-content {
+    //font-size: 80%;
+    color: $reddit_txt;
+    padding: .25em;
+    margin-left: .5em;
+    margin-right: .5em;
+}
+
+/* Flexbox stuff */
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card {
+    box-sizing: border-box;
+    margin: 1rem .5em;
+    width: calc(#{$tile-width * 1.5});
+    max-width: calc(#{$tile-width * 1.5});
+	-webkit-flex: 0 0 calc(#{$tile-width * 1.5});
+	flex: 0 0 calc(#{$tile-width * 1.5});
+    transition: top $transition-time, left $transition-time, opacity $transition-time;
+    border-radius: $reddit_card_border-radius;
+    box-shadow: 0 0 .5em 0 $reddit_orange;
+}
+

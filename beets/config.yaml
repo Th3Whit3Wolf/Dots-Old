@@ -1,0 +1,21 @@
+directory: ~/Tunes
+library: ~/.config/beets/library.db
+
+import:
+    move: yes
+    write: yes
+
+plugins: chroma acousticbrainz fetchart embedart lyrics
+
+chroma:
+    auto: yes
+
+acousticbrainz:
+    auto: yes
+
+fetchart:
+    cautious: true
+    cover_names: front back
+
+lyrics:
+  autp: yes
