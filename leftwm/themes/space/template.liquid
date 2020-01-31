@@ -1,0 +1,51 @@
+%{T3}%{B#292B2E}%{F#212026}%{B-}%{F-}%{T-}
+{% for tag in workspace.tags %}
+{% if tag.mine %}
+%{A1:$SCRIPTPATH/change_to_tag {{workspace.index}} {{tag.index}}:}
+%{F#CBC1D5}%{B#212026}  {% if tag.name == "1"%}❶
+{% elsif tag.name == "2"%}❷
+{% elsif tag.name == "3"%}❸
+{% elsif tag.name == "4"%}❹
+{% elsif tag.name == "5"%}❺
+{% elsif tag.name == "6"%}❻
+{% elsif tag.name == "7"%}❼
+{% elsif tag.name == "8"%}❽
+{% elsif tag.name == "9"%}❾
+{% elsif tag.name == "10"%}❿
+{% else %}{{tag.name}}
+{% endif %}  %{B-}%{F-}
+%{A}
+{% elsif tag.visible  %}
+%{A1:$SCRIPTPATH/change_to_tag {{workspace.index}} {{tag.index}}:}
+%{F#64606B}%{B#212026}  {% if tag.name == "1"%}❶
+{% elsif tag.name == "2"%}❷
+{% elsif tag.name == "3"%}❸
+{% elsif tag.name == "4"%}❹
+{% elsif tag.name == "5"%}❺
+{% elsif tag.name == "6"%}❻
+{% elsif tag.name == "7"%}❼
+{% elsif tag.name == "8"%}❽
+{% elsif tag.name == "9"%}❾
+{% elsif tag.name == "10"%}❿
+{% else %}{{tag.name}}
+{% endif %}  %{B-}%{F-}
+%{A}
+{% else tag.visible  %}
+%{A1:$SCRIPTPATH/change_to_tag {{workspace.index}} {{tag.index}}:}
+%{F#64606B}%{B#212026}  {% if tag.name == "1"%}❶
+{% elsif tag.name == "2"%}❷
+{% elsif tag.name == "3"%}❸
+{% elsif tag.name == "4"%}❹
+{% elsif tag.name == "5"%}❺
+{% elsif tag.name == "6"%}❻
+{% elsif tag.name == "7"%}❼
+{% elsif tag.name == "8"%}❽
+{% elsif tag.name == "9"%}❾
+{% elsif tag.name == "10"%}❿
+{% else %}{{tag.name}}
+{% endif %}  %{B-}%{F-}
+%{A}
+{% endif %}
+{% endfor %}
+%{B#292B2E}%{F#212026}%{T3}%{T-}%{B-}%{F-}
+%{c}

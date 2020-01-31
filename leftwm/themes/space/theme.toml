@@ -1,0 +1,5 @@
+border_width = 1
+margin = 8
+default_border_color = "#292B2E"
+floating_border_color = "#292B2E"
+focused_border_color = "#5A4A7D"
