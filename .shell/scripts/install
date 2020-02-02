@@ -1,0 +1,14 @@
+#!/bin/bash
+
+install() {
+    if [[ -x /usr/bin/sk ]]; then
+        FZ='sk'
+    elif [[ -x /usr/bin/fzf ]]; then
+        FZ='fzf'
+    fi
+    if [[ -x /usr/bin/yay ]]; then
+        yay -Slq | $FZ -m --preview 'yay -Si {1}'| xargs -ro yay -S
+    elif [[ -x /usr/bin/pacman ]]; then
+        pacman -Slq | $FZ -m --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S
+    fi
+}

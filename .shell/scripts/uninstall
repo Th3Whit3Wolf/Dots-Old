@@ -1,0 +1,14 @@
+#!/bin/bash
+
+uninstall() {
+    if [[ -x /usr/bin/sk ]]; then
+        FZ='sk'
+    elif [[ -x /usr/bin/fzf ]]; then
+        FZ='fzf'
+    fi
+    if [[ -x /usr/bin/yay ]]; then
+        yay -Qeq | $FZ -m --preview 'yay -Qi {1}' | xargs -ro yay -Rs
+    elif [[ -x /usr/bin/pacman ]]; then
+        pacman -Qeq | $FZ -m --preview 'pacman -Qi {1}' | xargs -ro pacman -Rs
+    fi
+}

@@ -1,0 +1,21 @@
+#!/bin/bash
+
+into() {
+	usage(){
+		echo "Usage: into [location]"
+		echo "  --help, -h               Print this message"
+		echo "  mbox                     SSH into MediaBox"
+		return 1
+	}
+
+	case $1 in
+	   mbox)
+	        sshpass -p libreelec ssh root@192.168.1.85 
+	    ;;
+	
+	   *)
+	        usage
+	    ;;
+	esac
+}
+
