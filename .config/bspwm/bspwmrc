@@ -1,34 +1,27 @@
 #!/bin/sh
 
-gap=10
-#PANEL_HEIGHT=25
+HERE="$HOME/.config/bspwm"
+gap=15
+PANEL_HEIGHT=30
 export gap
-#hgap=$(expr $gap / 2)
-#export hgap
-#export PANEL_HEIGHT
-
-
-
-
-#LAUNCHERS
-$HOME/.config/bspwm/autostart.sh
-#fix for moving spotify to specific workspace
-#bspc config external_rules_command ~/.config/bspwm/scripts/external_rules_command
+hgap=$(expr $gap / 2)
+export hgap
+export PANEL_HEIGHT
 
 #BSPWM configuration
-
-#This creates negative padding equal to window gap so that gaps are shown only between windows and not on desktop edges.
 bspc config window_gap $gap;
-bspc config top_padding -$gap #$(($PANEL_HEIGHT-$gap))
-bspc config left_padding -$gap
-bspc config right_padding -$gap
-bspc config bottom_padding -$gap
+bspc config top_padding $(($PANEL_HEIGHT+$gap))
+bspc config left_padding $gap
+bspc config right_padding $gap
+bspc config bottom_padding $(($PANEL_HEIGHT+$gap))
+
+for side in top right bottom left; do bspc config ${side}_monocle_padding -$gap; done
 
 #Various settings
-bspc config gapless_monocle     false #Default setup uses negative padding, and gapless monocle looks really weird like that
+bspc config gapless_monocle     true #Default setup uses negative padding, and gapless monocle looks really weird like that
 bspc config borderless_monocle  true
 bspc config single_monocle true
-bspc config paddingless_monocle false
+#bspc config paddingless_monocle true
 #bspc config ignore_ewmh_focus      true
 #bspc config initial_polarity second_child
 bspc config remove_disabled_monitors true
@@ -52,7 +45,7 @@ bspc config focus_follows_pointer true
 bspc config split_ratio         0.50
 
 #Single monitor
-bspc monitor -d 1 2 3 4 5 6 7 8 9
+bspc monitor -d 1 2 3 4 5 6 7 8 9 10
 
 #Dual monitor
 #find out names with arandr or xrandr
@@ -65,8 +58,7 @@ bspc monitor -d 1 2 3 4 5 6 7 8 9
 #bspc monitor HDMI2 -d 6 7 8 9 10
 
 ###This creates and names desktops for multiple monitors.
-workspaces_multimonitor &
-
+#workspaces_multimonitor &
 
 #Fullscreen applications
 bspc rule -a inkscape state=fullscreen
@@ -78,6 +70,7 @@ bspc rule -a VirtualBox Machine state=fullscreen
 
 #Floating applications
 bspc rule -a Arandr state=floating
+bspc rule -a kodi state=fullscreen
 bspc rule -a feh state=floating
 #bspc rule -a mpv state=floating sticky=on
 #bspc rule -a Font-manager state=floating
@@ -131,13 +124,22 @@ bspc rule -a wpa_gui state=pseudo_tiled
 bspc rule -a libreoffice state=tiled
 bspc rule -a '*:libreofficedev' state=tiled
 bspc rule -a '*:soffice' state=tiled
-#bspc rule -a firefox desktop=I
-#bspc rule -a calibre desktop=II
-#bspc rule -a geany desktop=II
-#bspc rule -a deluge desktop=III
 bspc rule -a 9menu border=off manage=off
 bspc rule -a tint2 border=off manage=off
 
+
+# For Kwim
+bspc rule -a plasmashell state=floating sticky=on border=off
+bspc rule -a krunner state=floating layer=above sticky=on border=off
+bspc rule -a lattedock state=floating border=off
+bspc rule -a Plasma state=floating
+bspc rule -a plasma-desktop state=floating
+bspc rule -a Kmix state=floating
+bspc rule -a Klipper state=floating
+bspc rule -a Plasmoidviewer state=floating
+bspc rule -a '*:plasma' state=floating
+bspc rule -a '*:plasmashell' state=floating
+bspc rule -a krita state=floating
 
 #open applications on specific workspaces
 #bspc rule -a Firefox desktop='^1' follow=on
@@ -160,7 +162,7 @@ bspc rule -a tint2 border=off manage=off
 #wmctrl -r Spotify -t 10
 #exit
 
-#polybar hidden when fullscreen for vlc, youtube, mpv ...
+#polpolybar hidden when fullscreen for vlc, youtube, mpv ...
 #find out the name of your monitor with xrandr
 #xdo below -t $(xdo id -n root) $(xdo id -a polybar-main_DP-1)
 #xdo below -t $(xdo id -n root) $(xdo id -a polybar-main_HDMI1)
@@ -168,6 +170,21 @@ bspc rule -a tint2 border=off manage=off
 
 ###External rules
 ##Pseudo automatic mode: always splits focused window when opening new window
-#bspc config external_rules_command ~/.config/bspwm/scripts/pseudo_automatic_mode
+#bspc config external_rules_command $HERE/scripts/pseudo_automatic_mode
 ##Adjust new window: splits biggest windows to keep windows about the same size
-#bspc config external_rules_command ~/.config/bspwm/scripts/adjust-new-window
+#bspc config external_rules_command $HERE/scripts/adjust-new-window
+#fix for moving spotify to specific workspace
+#bspc config external_rules_command $HERE/scripts/external_rules_command
+
+bspc subscribe node_state | while read -r _ _ _ _ state flag; do
+    if [[ "$state" != fullscreen ]]; then continue; fi
+    if [[ "$flag" == on ]]; then
+        xdo lower -N lattedock
+        xdo lower -N polybar
+    else
+        xdo raise -N lattedock
+        xdo raise -N polybar
+    fi
+done &
+#LAUNCHERS
+$HERE/autostart.sh

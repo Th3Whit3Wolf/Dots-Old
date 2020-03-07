@@ -21,14 +21,6 @@ Changelog:
         conky_parse("${cpu}")
         name=conky_parse("${acpitemp}"),
 
-
-        IF lua fails to parse do the following
-        ```
-            cd /sys/class/hwmon
-            fd -d 1 -x ls   (to get and idea where temp1_input is)
-        ```
-        replace the "4" in "4 temp 1" on line 84 and 403 
-        with appropriate hwmon
 ]]
 
 -- A TESTER
@@ -57,16 +49,16 @@ function file_exists(name)
 end
 
 function findHwmonNum()
-    for i = 0,10,1 do
-      if file_exists("/sys/class/hwmon/hwmon"..i.."/temp3_crit") then
-          return i
-      end
+    for i = 0,6,1 do
+        if file_exists("/sys/class/hwmon/hwmon"..i.."/temp3_crit") then
+            return i
+        end
     end
-  end
+end
 
-  function conky_cputemp(n)
+function conky_cputemp(n)
     return conky_parse("${hwmon "..findHwmonNum().." temp "..n.."}")
-  end
+end
 
 normal="0x875faf"
 warn="0xff7200"
@@ -82,7 +74,7 @@ settings_table = {
 
     {
         name='hwmon',
-        arg='4 temp 1',
+        arg='5 temp 1',
         max=110,
         bg_colour=0x3b3b3b,
         bg_alpha=0.8,
@@ -513,7 +505,7 @@ function temp_watch()
     warn_value=70
     crit_value=80
 
-    temperature=tonumber(conky_parse("${hwmon 4 temp 1}"))
+    temperature=tonumber(conky_parse(conky_cputemp(1)))
 
     if temperature<warn_value then
         settings_table[1]['fg_colour']=normal

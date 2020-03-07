@@ -1,6 +1,8 @@
 use xcb;
 use xcb_util::{ewmh, icccm};
 use std::{thread, time};
+
+const ICON_COLOR: &'static str = "#5D4D7A";
 fn main() {
     let stop = false;
     while stop != true {
@@ -15,28 +17,48 @@ fn main() {
         } else {
             let wm_class = icccm::get_wm_class(&ewmh_conn, win).get_reply().unwrap();
             match wm_class.class() {
-                "Atom" => println!("{{T2}} %{{T-}}%{{F-}}Atom"),
-                "brave-browser" => println!("%{{F#5D4D7A}}%{{T2}} %{{T-}}%{{F-}}brave"),
-                "code-oss" => println!("%{{F#5D4D7A}}%{{T2}}﬏ %{{T-}}%{{F-}}vscode"),
-                "firefox" => println!("%{{F#5D4D7A}}%{{T2}} %{{T-}}%{{F-}}Firefox"),
-                "font-manager" => println!("%{{F#5D4D7A}}%{{T2}}ﯔ %{{T-}}%{{F-}}font manager"),
-                "kitty" => println!("%{{F#5D4D7A}}%{{T2}} %{{T-}}%{{F-}}kitty"),
-                "gimp-2.10" => println!("%{{F#5D4D7A}}%{{T2}} %{{T-}}%{{F-}}gimp"),
-                "google-chrome" => println!("%{{F#5D4D7A}}%{{T2}} %{{T-}}%{{F-}}chrome"),
-                "Gnome-podcasts" => println!("%{{F#5D4D7A}}%{{T2}} %{{T-}}%{{F-}}Gnome Podcasts"),
-                "gpartedbin" => println!("%{{F#5D4D7A}}%{{T2}} %{{T-}}%{{F-}}gparted"),
-                "lxappearance" => println!("%{{F#5D4D7A}}%{{T2}} %{{T-}}%{{F-}}lxappearance"),
-                "mail" => println!("%{{F#5D4D7A}}%{{T2}} %{{T-}}%{{F-}}email"),
-                "neovim" => println!("%{{F#5D4D7A}}%{{T2}} %{{T-}}%{{F-}}vim"),
-                "nitrogen" => println!("%{{F#5D4D7A}}%{{T2}} %{{T-}}%{{F-}}nitrogen"),
-                "polkit-gnome-authentication-agent-1" => println!("%{{F#5D4D7A}}%{{T2}} %{{T-}}%{{F-}}password"),
-                "Spotify" => println!("%{{F#5D4D7A}}%{{T2}} %{{T-}}%{{F-}}Spotify"),
-                "steam" => println!("%{{F#5D4D7A}}%{{T2}} %{{T-}}%{{F-}}steam"),
-                "thunar" => println!("%{{F#5D4D7A}}%{{T2}} %{{T-}}%{{F-}}thunar"),
-                "Thunar" => println!("%{{F#5D4D7A}}%{{T2}} %{{T-}}%{{F-}}Thunar"),
-                "thunderbird" => println!("%{{F#5D4D7A}}%{{T2}} %{{T-}}%{{F-}}email"),
-                "timeshift-gtk" => println!("%{{F#5D4D7A}}%{{T2}} %{{T-}}%{{F-}}timeshift"),
-                _ => println!("%{{F#5D4D7A}}%{{T2}}{} %{{T-}}%{{F-}}", wm_class.class()),
+                "Alacritty" => println!("%{{F{}}}%{{T2}} %{{T-}}%{{F-}}Alacritty", ICON_COLOR),
+                "Atom" => println!("%{{F{}}}%{{T2}} %{{T-}}%{{F-}}Atom", ICON_COLOR),
+                "brave-browser" => println!("%{{F{}}}%{{T2}} %{{T-}}%{{F-}}Brave", ICON_COLOR),
+                "code-oss" => println!("%{{F{}}}%{{T2}}﬏ %{{T-}}%{{F-}}VS Code", ICON_COLOR),
+                "Chromium" => println!("%{{F{}}}%{{T2}} %{{T-}}%{{F-}}Chromium", ICON_COLOR),
+                "Deluge-gtk" => println!("%{{F{}}}%{{T2}}﨩 %{{T-}}%{{F-}}Deluge", ICON_COLOR),
+                "dolphin" => println!("%{{F{}}}%{{T2}} %{{T-}}%{{F-}}Dolphin", ICON_COLOR),
+                "Electron" => println!("%{{F{}}}%{{T2}} %{{T-}}%{{F-}}Electron", ICON_COLOR),
+                "firefox" => println!("%{{F{}}}%{{T2}} %{{T-}}%{{F-}}Firefox", ICON_COLOR),
+                "font-manager" => println!("%{{F{}}}%{{T2}}ﯔ %{{T-}}%{{F-}}Font Manager", ICON_COLOR),
+                "htop" => println!("%{{F{}}}%{{T2}} %{{T-}}%{{F-}}Htop", ICON_COLOR),
+                "Io.github.celluloid_player.Celluloid" => println!("%{{F{}}}%{{T2}} %{{T-}}%{{F-}}Celluloid", ICON_COLOR),
+                "kcolorchooser" => println!("%{{F{}}}%{{T2}} %{{T-}}%{{F-}}KDE Color Chooser", ICON_COLOR),
+                "kitty" => println!("%{{F{}}}%{{T2}} %{{T-}}%{{F-}}Kitty", ICON_COLOR),
+                "Kodi" => println!("%{{F{}}}%{{T2}} %{{T-}}%{{F-}}Kodi", ICON_COLOR),
+                "Gcolor3" => println!("%{{F{}}}%{{T2}} %{{T-}}%{{F-}}Gnome ICON_COLOR Picker", ICON_COLOR),
+                "gotop" => println!("%{{F{}}}%{{T2}} %{{T-}}%{{F-}}Gotop", ICON_COLOR),
+                "gimp-2.10" => println!("%{{F{}}}%{{T2}} %{{T-}}%{{F-}}Gimp", ICON_COLOR),
+                "google-chrome" => println!("%{{F{}}}%{{T2}} %{{T-}}%{{F-}}Chrome", ICON_COLOR),
+                "Gnome-podcasts" => println!("%{{F{}}}%{{T2}} %{{T-}}%{{F-}}Gnome Podcasts", ICON_COLOR),
+                "gpartedbin" => println!("%{{F{}}}%{{T2}} %{{T-}}%{{F-}}Gparted", ICON_COLOR),
+                "lxappearance" => println!("%{{F{}}}%{{T2}} %{{T-}}%{{F-}}LX Appearance", ICON_COLOR),
+                "Lollypop" => println!("%{{F{}}}%{{T2}} %{{T-}}%{{F-}}Lollypop", ICON_COLOR),
+                "mail" => println!("%{{F{}}}%{{T2}} %{{T-}}%{{F-}}Email", ICON_COLOR),
+                "mpv" => println!("%{{F{}}}%{{T2}} %{{T-}}%{{F-}}MPV", ICON_COLOR),
+                "neovim" => println!("%{{F{}}}%{{T2}} %{{T-}}%{{F-}}Neovim", ICON_COLOR),
+                "nitrogen" => println!("%{{F{}}}%{{T2}} %{{T-}}%{{F-}}Nitrogen", ICON_COLOR),
+                "Parole" => println!("%{{F{}}}%{{T2}} %{{T-}}%{{F-}}Parole", ICON_COLOR),
+                "partitionmanager" => println!("%{{F{}}}%{{T2}} %{{T-}}%{{F-}}KDE Partition Manager", ICON_COLOR),
+                "polkit-gnome-authentication-agent-1" => println!("%{{F{}}}%{{T2}} %{{T-}}%{{F-}}Password", ICON_COLOR),
+                "Spotify" => println!("%{{F{}}}%{{T2}} %{{T-}}%{{F-}}Spotify", ICON_COLOR),
+                "steam" => println!("%{{F{}}}%{{T2}} %{{T-}}%{{F-}}Steam", ICON_COLOR),
+                "thunar" => println!("%{{F{}}}%{{T2}} %{{T-}}%{{F-}}Thunar", ICON_COLOR),
+                "Thunar" => println!("%{{F{}}}%{{T2}} %{{T-}}%{{F-}}Thunar", ICON_COLOR),
+                "Typora" => println!("%{{F{}}}%{{T2}}龎 %{{T-}}%{{F-}}Typora", ICON_COLOR),
+                "thunderbird" => println!("%{{F{}}}%{{T2}} %{{T-}}%{{F-}}Thunderbird", ICON_COLOR),
+                "timeshift-gtk" => println!("%{{F{}}}%{{T2}} %{{T-}}%{{F-}}Timeshift", ICON_COLOR),
+                "UXTerm" => println!("%{{F{}}}%{{T2}} %{{T-}}%{{F-}}Terminal", ICON_COLOR),
+                "updates" => println!("%{{F{}}}%{{T2}}ﮮ %{{T-}}%{{F-}}Running Updates", ICON_COLOR),
+                "Xfce4-terminal" => println!("%{{F{}}}%{{T2}} %{{T-}}%{{F-}}Terminal", ICON_COLOR),
+                "XTerm" => println!("%{{F{}}}%{{T2}} %{{T-}}%{{F-}}Terminal", ICON_COLOR),
+                _ => println!("{}", wm_class.class()),
             }
             let hundred_millis = time::Duration::from_millis(100);
             thread::sleep(hundred_millis);
