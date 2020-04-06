@@ -1,7 +1,11 @@
+pac := "sudo pacman -S"
+yay := "yay -S"
+pkgs := `echo $(cat pac.list)`
+aur := `echo $(cat aur.list)`
 
 # Install
 install:
-#!/bin/bash
+    #!/bin/bash
     if [[ -v XDG_CONFIG_HOME ]]; then
         cp -r .config/* $XDG_CONFIG_HOME/
     else
@@ -23,3 +27,14 @@ install:
     sudo cp Systmed/* /etc/systemd/system
     sudo cp -r Sddm/themes/* /usr/share/sddm/themes/
     sudo cp -r Plasmoids/ /usr/share/plasma/plasmoids
+
+# Pacman install package
+pacman:
+    #!/bin/bash
+    {{pac}} {{pkgs}}
+    {{yay}} {{aur}}
+
+upd_pkg_list:
+    #!/bin/bash
+    pacman -Qqm | grep -v yay > aur.list
+    pacman -Qqn | grep -v pacman > pac.list
