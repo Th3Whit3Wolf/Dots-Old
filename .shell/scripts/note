@@ -2,14 +2,14 @@ note () {
   local notes_dir="$HOME/Docs/Notes"
   local DB_notes_dir="$HOME/Docs/Dropbox/notes"
   case "$1" in
-    c | -c)
+    c)
       cd "$notes_dir"
       ;;
-    d | -d)
+    d)
       pushd "$DB_notes_dir"
       popd
       ;;
-    dp | -dp)
+    dp)
       if [[ -f "$notes_dir/$1.md" ]]; then
         if hash pandoc 2>/dev/null; then
           pandoc "$notes_dir/$1.md" -o "$DB_notes_dir/$1.pdf"
@@ -18,7 +18,7 @@ note () {
         fi
       fi
       ;;
-    g | -g)
+    g)
       pushd "$notes_dir"
       msg="Regenerated at $(date -u '+%Y-%m-%d %H:%M:%S') UTC"
       git add .
@@ -26,15 +26,15 @@ note () {
       git push origin master
       popd
       ;;
-    h | -h)
-      echo 'c, -c          Go to Notes Directory'
-      echo 'd, -d          Sync to Dropbox'
-      echo 'g, -g          Push Notes to Github'
-      echo 'h, -h          help information'
-      echo 'l, -l          List of Notes in directory'
+    h)
+      echo 'c          Go to Notes Directory'
+      echo 'd          Sync to Dropbox'
+      echo 'g          Push Notes to Github'
+      echo 'h          help information'
+      echo 'l          List of Notes in directory'
       echo 'no flag    Starts New Notes'
       ;;
-    l | -l)
+    l)
       pushd $notes_dir
       if hash sk 2>/dev/null; then
         if hash bat 2>/dev/null; then
@@ -53,7 +53,7 @@ note () {
       fi
       popd $notes_dir
       ;;
-    e | -e)
+    e)
       pushd $notes_dir
       if hash sk 2>/dev/null; then
         if hash bat 2>/dev/null; then

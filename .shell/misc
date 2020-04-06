@@ -12,8 +12,6 @@ alias mkdir='mkdir -p -v'
 alias more='less'
 alias ping='ping -c 5'
 
-alias ll='exa -l -ghbmu@ --git'
-alias la='exa -la -ghbmu@ --git'
 alias lsxt="fd -t f -j4 | grep -o '\.[^./]*$' | sort | uniq -c | sort -g"
 
 # Colorful Grep

@@ -1,3 +1,0 @@
-#!/bin/dash
-
-kitty --class='updates' --name='updates' /bin/sh -c 'sudo pacman -Syu && rustup update'

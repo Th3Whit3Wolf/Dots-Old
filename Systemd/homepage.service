@@ -1,0 +1,12 @@
+[Unit]
+Description=Serves homepage to improve my productivity
+Documenetation=man:miniserve
+
+[Service]
+Type=simple
+WorkingDirectory=/home/doc/.hp-zola/
+ExecStart=/usr/bin/miniserve -i 127.0.2.1 -p 80 --index index.html -- public
+ExecStop=/usr/bin/kill `/bin/ps aux | /bin/grep -v grep | /usr/bin/awk '{ print $2 }'`
+
+[Install]
+WantedBy=multi-user.target

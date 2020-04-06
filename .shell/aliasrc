@@ -9,21 +9,20 @@ alias br='cargo build --release'
 alias c='clear'
 alias cargopwd='cargo install --force --path $PWD'
 alias cargogit='cargo install --force --git'
-alias chown='sudo chown -R $USER:$USER'
+alias chown='sudo chown -R doc:users'
 alias cin='cargo install --force --path $PWD'
 alias cig='cargo install --git'
-alias clock='tty-clock -D -c'
 alias clone='git clone'
-#alias code='vscodium'
+alias code='code-oss'
 alias crit='systemd-analyze critical-chain'
-alias emc='emacsclient -create-frame --alternate-editor=""'
-#alias find='fd'
+alias find='fd'
 alias grub-update='sudo grub-mkconfig -o /boot/grub/grub.cfg'
+alias gh='eval `ssh-agent` && ssh-add ~/.ssh/github_rsa'
 alias gt='cd $(fd -H -t d -j 12 | fzy -j 4)'
-alias l='lsd'
+alias l='ls'
 alias les='LESSOPEN="| src-hilite-lesspipe.sh %s" LESS=" -R " less -N'
-alias ls='exa --icons'
-alias play='mpv --gpu-context=wayland --hwdec=auto'
+alias ls='exa'
+alias play='mpv --hwdec=auto'
 alias zplugins='nvim ~/.zsh_plugins.txt && antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh'
 alias ngr='sudo nginx -s reload'
 alias mem='free -h --si'
@@ -31,14 +30,12 @@ alias r='cargo run'
 alias rr='cargo run --release'
 alias sudoenv='sudo env PATH=$PATH'
 alias suvim='sudo -E nvim'
-alias swayconf='nvim $HOME/.config/sway/config'
 alias t='cargo test --release -- --nocapture'
 alias tokei='tokei -s=lines'
 alias tst='hyperfine'
 alias tstc='hyperfine --prepare "sync; echo 3 | sudo tee /proc/sys/vm/drop_caches"'
 alias tstw='hyperfine -w 10'
 alias tmuxkillall="tmux ls | awk '{print $1}' | sed 's/://g' | xargs -I{} tmux kill-session -t {}"
-alias vim-reset='vim -c "call dein#clear_state() | call dein#recache_runtimepath() | q"'
 alias xo='xdg-open &>/dev/null'
 alias xsetkeyr='xset r rate 182 42'
 alias wininfo='swaymsg -t get_tree'
@@ -49,19 +46,7 @@ alias exports='nvim ~/.shell/exports && source ~/.shell/exports' # Hide from ali
 alias misc='nvim ~/.shell/misc && source ~/.shell/misc' # Hide from ali
 alias sys='nvim ~/.shell/sys && source ~/.shell/sys' # Hide from ali
 alias typos='nvim ~/.shell/typos && source ~/.shell/typos' # Hide from ali
-alias j='just'
-
-
+ 
 if which rsync >/dev/null 2>&1; then
 	alias scp='rsync -avzhe ssh --progress'
-fi
-
-alias jellyfin='sudo systemctl start jellyfin && sleep 1 && exo-open http://localhost:8096/'
-alias vboot='nvim --startuptime ~/.nvim.log -c quit && cat ~/.nvim.log | tail -n1'
-
-alias sleepy='sudo systemctl unmask sleep.target suspend.target hibernate.target hybrid-sleep.target'
-alias insomnia='sudo systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target'
-
-if [ -x /usr/bin/trash ]; then
-	alias rm='trash'
 fi

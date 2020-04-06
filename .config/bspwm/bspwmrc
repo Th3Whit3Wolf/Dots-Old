@@ -1,19 +1,17 @@
 #!/bin/sh
 
-HERE="$HOME/.config/bspwm"
-gap=15
-PANEL_HEIGHT=30
+# Most convenient numbers in Fibonacci's sequence
+gap=21
+PANEL_HEIGHT=34
 export gap
-hgap=$(expr $gap / 2)
-export hgap
 export PANEL_HEIGHT
 
 #BSPWM configuration
 bspc config window_gap $gap;
 bspc config top_padding $(($PANEL_HEIGHT+$gap))
-bspc config left_padding $gap
+bspc config left_padding $(($PANEL_HEIGHT+$gap))
 bspc config right_padding $gap
-bspc config bottom_padding $(($PANEL_HEIGHT+$gap))
+bspc config bottom_padding $gap #$(($PANEL_HEIGHT+$gap))
 
 for side in top right bottom left; do bspc config ${side}_monocle_padding -$gap; done
 
@@ -51,35 +49,18 @@ bspc monitor -d 1 2 3 4 5 6 7 8 9 10
 #find out names with arandr or xrandr
 #bspc monitor DP-2 -d 1 2 3 4 5 6 7 8 9
 #bspc monitor LVDS1 -d 1 2 3 4
-#bspc monitor DP3 -d  5 6 7 8 9
-#bspc monitor HDMI-0 -d 1 2 3 4 5 6 7 8 9 10
-#bspc monitor HDMI-1 -d 1 2 3 4 5 6 7 8 9 10
-#bspc monitor HDMI1 -d 1 2 3 4 5
-#bspc monitor HDMI2 -d 6 7 8 9 10
 
 ###This creates and names desktops for multiple monitors.
 #workspaces_multimonitor &
 
 #Fullscreen applications
-bspc rule -a inkscape state=fullscreen
 bspc rule -a Spotify state=fullscreen
-bspc rule -a Vlc state=fullscreen
-bspc rule -a VirtualBox Manager state=fullscreen
-bspc rule -a VirtualBox Machine state=fullscreen
-#bspc rule -a Gimp state=fullscreen
 
 #Floating applications
-bspc rule -a Arandr state=floating
 bspc rule -a kodi state=fullscreen
 bspc rule -a feh state=floating
-#bspc rule -a mpv state=floating sticky=on
-#bspc rule -a Font-manager state=floating
-bspc rule -a Galculator state=floating
-#bspc rule -a Gpick state=floating sticky=on
-#bspc rule -a Nitrogen state=floating
-bspc rule -a Oblogout state=floating
+bspc rule -a mpv state=floating sticky=on
 bspc rule -a Pavucontrol state=floating sticky=on
-bspc rule -a gnome-calendar state=floating sticky=on
 
 #bspc rule -a Peek state=floating
 #bspc rule -a rofi state=floating sticky=on
@@ -89,46 +70,16 @@ bspc rule -a gnome-calendar state=floating sticky=on
 bspc rule -a Xfce4-terminal state=floating
 
 #Tiled applications
-bspc rule -a Gnome-disks state=tiled
-bspc rule -a Xfce4-settings-manager state=tiled
-
-# From Manjaro
-bspc rule -a screenkey --unmanage
-bspc rule -a gcolor2 state=floating center=true
-bspc rule -a lxappearance state=floating center=true
-bspc rule -a gmrun state=floating center=true
-bspc rule -a lxterminal state=floating center=true sticky=true
-#bspc rule -a urxvt state=floating center=true
-bspc rule -a viewnior state=floating center=true
-bspc rule -a file-roller state=floating center=true
-bspc rule -a floaterm state=floating center=true
+bspc rule -a Subl3 state=tiled
 bspc rule -a spotify state=pseudo_tiled
-#bspc rule -a nautilus state=pseudo_tiled
-#bspc rule -a skype state=pseudo_tiled
-bspc rule -a file-roller state=pseudo_tiled
 bspc rule -a transmission-gtk state=pseudo_tiled
-bspc rule -a conky sticky=on manage=off lower=on
-bspc rule -a astime sticky=on
-bspc rule -a yad state=floating
-bspc rule -a Docky layer=above border=off manage=on
-bspc rule -a Plank layer=above border=off manage=on
-bspc rule -a wbar layer=above
-bspc rule -a dockbarx layer=above
-bspc rule -a google-chrome-unstable private=on
-bspc rule -a google-chrome-stable private=on
 bspc rule -a chromium private=on
 bspc rule -a firefox private=on
-bspc rule -a midori private=on
-bspc rule -a gnome-pie border=off manage=off
-bspc rule -a wpa_gui state=pseudo_tiled
 bspc rule -a libreoffice state=tiled
 bspc rule -a '*:libreofficedev' state=tiled
 bspc rule -a '*:soffice' state=tiled
-bspc rule -a 9menu border=off manage=off
-bspc rule -a tint2 border=off manage=off
 
-
-# For Kwim
+# For Kwin
 bspc rule -a plasmashell state=floating sticky=on border=off
 bspc rule -a krunner state=floating layer=above sticky=on border=off
 bspc rule -a lattedock state=floating border=off
@@ -139,34 +90,9 @@ bspc rule -a Klipper state=floating
 bspc rule -a Plasmoidviewer state=floating
 bspc rule -a '*:plasma' state=floating
 bspc rule -a '*:plasmashell' state=floating
-bspc rule -a krita state=floating
 
 #open applications on specific workspaces
-#bspc rule -a Firefox desktop='^1' follow=on
-#bspc rule -a Google-chrome desktop='^1' follow=on
-#bspc rule -a Chromium desktop='^1'  follow=on
-#bspc rule -a Subl3 desktop='^2' follow=on
-#bspc rule -a Atom desktop='^2' follow=on
-#bspc rule -a Steam desktop='^5'
-#bspc rule -a vlc desktop='^6'  follow=on
-#bspc rule -a mpv desktop='^6'  follow=on
-#bspc rule -a Vivaldi-stable desktop='^6' follow=on
-#bspc rule -a Vivaldi-snapshot desktop='^6' follow=on
-#bspc rule -a Transmission-gtk desktop='^7' follow=on
-#bspc rule -a Thunar desktop='^8' follow=on
-#bspc rule -a discord desktop='^9' follow=on
-#bspc rule -a Spotify desktop='^10' follow=on
-
-#Spotify fix  --move desktop 10
-#sleep 1
-#wmctrl -r Spotify -t 10
-#exit
-
-#polpolybar hidden when fullscreen for vlc, youtube, mpv ...
-#find out the name of your monitor with xrandr
-#xdo below -t $(xdo id -n root) $(xdo id -a polybar-main_DP-1)
-#xdo below -t $(xdo id -n root) $(xdo id -a polybar-main_HDMI1)
-#xdo below -t $(xdo id -n root) $(xdo id -a polybar-main_HDMI2)
+bspc rule -a Steam desktop='^5'
 
 ###External rules
 ##Pseudo automatic mode: always splits focused window when opening new window
@@ -180,11 +106,9 @@ bspc subscribe node_state | while read -r _ _ _ _ state flag; do
     if [[ "$state" != fullscreen ]]; then continue; fi
     if [[ "$flag" == on ]]; then
         xdo lower -N lattedock
-        xdo lower -N polybar
     else
         xdo raise -N lattedock
-        xdo raise -N polybar
     fi
 done &
-#LAUNCHERS
-$HERE/autostart.sh
+
+xprop -root -f _NET_DESKTOP_LAYOUT 32cccc -set _NET_DESKTOP_LAYOUT 1,1,10,0 &

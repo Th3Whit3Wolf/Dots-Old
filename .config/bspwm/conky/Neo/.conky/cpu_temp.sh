@@ -1,1 +1,0 @@
-sensors | grep "Package id 0:" | awk '{print $4}' | sed 's/+//' | rev | cut -c6- | rev

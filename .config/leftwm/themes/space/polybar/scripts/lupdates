@@ -1,3 +1,0 @@
-#!/bin/dash
-
-kitty /bin/dash -c "sudo pacman -Syu"

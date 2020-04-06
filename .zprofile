@@ -3,6 +3,10 @@ if which chromium >/dev/null 2>&1; then
 	export chrome=/usr/bin/chromium
 fi
 
+if [[ -d ~/.local/bin ]]; then
+	export PATH="$HOME/.local/bin:$PATH"
+fi
+
 if [[ -d ~/.cargo/ ]]; then
 	export PATH="$HOME/.cargo/bin:$PATH"
 fi
@@ -27,20 +31,6 @@ if which dart >/dev/null 2>&1; then
 	export PATH="$PATH:$HOME/.pub/bin"
 fi
 
-# Necessary for Sway to start
-	if test -z "${XDG_RUNTIME_DIR}"; then
-		export XDG_RUNTIME_DIR=/tmp/${UID}-runtime-dir
-		if ! test -d "${XDG_RUNTIME_DIR}"; then
-			mkdir "${XDG_RUNTIME_DIR}"
-			chmod 0700 "${XDG_RUNTIME_DIR}"
-		fi
-	fi
-
-# Autostart Sway
-if [ "$(tty)" = "/dev/tty1" ]; then
-	WLR_DRM_DEVICES=/dev/dri/card0 sway
-fi
-
 # Colorful Man Pages
 export PAGER=less
 export LESS_TERMCAP_mb=$'\E[01;31m'         # begin blinking
@@ -52,20 +42,12 @@ export LESS_TERMCAP_ue=$'\E[0m'             # end underline
 export LESS_TERMCAP_us=$'\E[04;38;5;146m'   # begin underline
 
 # XDG directories
-if [[ -d ~/.config/ ]]; then
-	export XDG_CONFIG_HOME="$HOME/.config"
-fi
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
 
-if [[ -d ~/.cache/ ]]; then
-	export XDG_CACHE_HOME="$HOME/.cache"
-fi
-
-if [[ -d ~/.local/share/ ]]; then
-	export XDG_DATA_HOME="$HOME/.local/share"
-fi
-
-if [[ -d ~/Dex/ ]]; then
-	export XDG_DESKTOP_DIR="$HOME/Dex"
+if [[ -d ~/Desks/ ]]; then
+	export XDG_DESKTOP_DIR="$HOME/Desks"
 fi
 
 if [[ -d ~/Docs/ ]]; then
@@ -73,7 +55,7 @@ if [[ -d ~/Docs/ ]]; then
 fi
 
 if [[ -d ~/Downs/ ]]; then
-	eexport XDG_DOWNLOAD_DIR="$HOME/Downs"
+	export XDG_DOWNLOAD_DIR="$HOME/Downs"
 fi
 
 if [[ -d ~/Tunes/ ]]; then
@@ -84,17 +66,20 @@ if [[ -d ~/Pics/ ]]; then
 	export XDG_PICTURES_DIR="$HOME/Pics"
 fi
 
-if [[ -d ~/Pub/ ]]; then
-	export XDG_PUBLICSHARE_DIR="$HOME/Pub"
-fi
-
-if [[ -d ~/.ssh/rsa_id/ ]]; then
-	export SSH_KEY_PATH="$HOME/.ssh/rsa_id"
+if [[ -d ~/Pubs/ ]]; then
+	export XDG_PUBLICSHARE_DIR="$HOME/Pubs"
 fi
 
 if [[ -d ~/Vids/ ]]; then
 	export XDG_VIDEOS_DIR="$HOME/Vids"
 fi
 
+if [[ -d ~/.ssh/rsa_id/ ]]; then
+	export SSH_KEY_PATH="$HOME/.ssh/rsa_id"
+fi
+
 export EDITOR=nvim
 export VISUAL=code-oss
+
+
+export GTK_USE_PORTAL=1

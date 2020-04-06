@@ -1,0 +1,5 @@
+[General]
+ScreenHeight=1440
+ScreenWidth=2560
+background=SpaceMountain.png
+type=image

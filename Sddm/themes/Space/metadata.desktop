@@ -1,0 +1,13 @@
+[SddmGreeterTheme]
+Name=Space
+Description=Space
+Author=Th3Whit3Wolf
+License=GPLv.3
+Type=sddm-theme
+Version=1.0
+Screenshot=preview.png
+MainScript=Main.qml
+ConfigFile=theme.conf
+TranslationsDirectory=translations
+Email=
+Theme-Id=Space

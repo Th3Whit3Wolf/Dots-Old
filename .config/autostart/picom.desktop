@@ -1,0 +1,22 @@
+[Desktop Entry]
+Categories=Utility;
+Comment[en_US]=A X compositor
+Comment=A X compositor
+Exec=/usr/bin/picom --experimental-backends
+GenericName[en_US]=X compositor
+GenericName=X compositor
+Keywords=compositor;composite manager;window effects;transparency;opacity;
+MimeType=
+Name[en_US]=picom
+Name=picom
+Path=
+StartupNotify=true
+Terminal=false
+TerminalOptions=
+TryExec=picom
+Type=Application
+Version=1.0
+X-DBUS-ServiceName=
+X-DBUS-StartupType=
+X-KDE-SubstituteUID=false
+X-KDE-Username=

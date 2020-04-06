@@ -91,6 +91,11 @@ bindkey '^[[F' end-of-line
 bindkey '^[[3~' delete-char
 bindkey '^[3;5~' delete-char
 bindkey '^?' backward-delete-char
+###############################################################
+#    TMUX 
+###############################################################
+export TERM=xterm-256color
+POWERLEVEL9K_IGNORE_TERM_COLORS=true
 ################################################################
 #    PROMPT    #     #    PROMPT    #     #    PROMPT    #     #
 ################################################################

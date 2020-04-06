@@ -1,8 +1,0 @@
-{
-  "dependencies": {
-    "gulp": "^4.0.0",
-    "gulp-cli": "^2.2.0",
-    "node-sass": "^4.11.0",
-    "sass": "^1.19.0"
-  }
-}
