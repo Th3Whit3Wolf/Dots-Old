@@ -46,7 +46,7 @@ alias exports='nvim ~/.shell/exports && source ~/.shell/exports' # Hide from ali
 alias misc='nvim ~/.shell/misc && source ~/.shell/misc' # Hide from ali
 alias sys='nvim ~/.shell/sys && source ~/.shell/sys' # Hide from ali
 alias typos='nvim ~/.shell/typos && source ~/.shell/typos' # Hide from ali
- 
+
 if which rsync >/dev/null 2>&1; then
 	alias scp='rsync -avzhe ssh --progress'
 fi
