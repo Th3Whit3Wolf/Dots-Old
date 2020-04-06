@@ -1,0 +1,13 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = git@github.com:Th3Whit3Wolf/SS-Vim.git
+	branch = V2
+	commit = cae22f5bb59946174d9e88f91b40aa5f934a28f3
+	parent = 640de86686a9ad4e8f48a37a97ad29bbf8c0aef3
+	method = merge
+	update = auto
+	cmdver = 0.4.1

@@ -1,0 +1,41 @@
+{
+    "coc.preferences.formatOnType": true,
+    "coc.preferences.formatOnSaveFiletypes": [
+        "css",
+        "go",
+        "markdown",
+        "Markdown",
+        "javascript", 
+        "javascriptreact",
+        "json", 
+        "jsonc",
+        "rust",
+        "typescript", 
+        "typescriptreact"
+    ],
+    "prettier.printWidth": 160,
+    "prettier.singleQuote": true,
+    "codeLens.enable": true,
+    "diagnostic.virtualText": true,
+    "diagnostic.checkCurrentLine": true,
+    "git.addGBlameToVirtualText": true,
+    "suggest.noselect": false,
+    "suggest.minTriggerInputLength": 2,
+    "signature.target": "echo",
+    "list.normalMappings": {
+      "<C-c>": "do:exit"
+    },
+    "list.insertMappings": {
+      "<C-c>": "do:exit"
+    },
+    "suggest.triggerAfterInsertEnter": true,
+    "snippets.extends" : {
+      "cpp": ["c"],
+      "javascriptreact": ["javascript"],
+      "typescript": ["javascript"]
+    },
+    "snippets.ultisnips.directories": [
+      "UltiSnips",
+      "gosnippets/UltiSnips"
+    ]
+  }
