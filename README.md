@@ -2,8 +2,8 @@
 
 ## Screenshots
 
-[startup](screemshots/startup.png)
+![startup](screenshots/startup.png)
 
-[code](screemshots/code.png)
+![code](screenshots/code.png)
 
-[busy](screemshots/busy.png)
+![busy](screenshots/busy.png)
