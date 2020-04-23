@@ -1,0 +1,19 @@
+#!/usr/bin/env ion
+
+let BAR_ICON = ""
+let NOTIFY_ICON = "/home/doc/Pics/Assets/rust-logo.svg"
+
+sleep 15
+
+let UPDATES = $(rustup check 2>/dev/null | grep -v "Up to date" | wc -l)
+
+# notify user of updates
+if exists -b notify-send
+    if test $UPDATES -gt 0 
+        notify-send -u normal -i $NOTIFY_ICON "New rust toolchain available!" 
+        echo " $UPDATES"
+    else
+        echo "$BAR_ICON"
+    end
+end
+
