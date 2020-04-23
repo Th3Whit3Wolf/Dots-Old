@@ -34,7 +34,8 @@ pacman:
     {{pac}} {{pkgs}}
     {{yay}} {{aur}}
 
-upd_pkg_list:
+# Update {pac,aur}.list
+mkpkgl:
     #!/bin/bash
     pacman -Qqm | grep -v yay > aur.list
     pacman -Qqn | grep -v pacman > pac.list
