@@ -12,7 +12,10 @@ elif [[ -x /usr/bin/dpkg ]]; then
     alias update='sudo apt update && sudo apt upgrade && rustup update'
     alias uninstall='sudo apt remove'
     alias install='sudo apt install'
-		alias checkupdates="sudo apt list --upgradable 2>/dev/null | wc -l"
+    alias checkupdates="sudo apt list --upgradable 2>/dev/null | wc -l"
+    alias rg='rgrep'
+    alias bat='batcat'
+    alias fd='fdfind'
 else
     echo "Couldn't find package manager"
 fi
