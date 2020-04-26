@@ -62,6 +62,8 @@ setopt correct_all          # autocorrect commands
 setopt interactive_comments # allow comments in interactive shells
 setopt complete_aliases
 
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
 ################################################
