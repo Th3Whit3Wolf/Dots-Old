@@ -1,0 +1,183 @@
+#!/bin/bash
+# Convert all files in directory
+cvrt() {
+	if [[ -n "$1" && -n "$2" ]]; then
+		FROM=$1
+		TO=$2
+		case $FROM in
+		avi)
+			case $TO in
+			mp4)
+				fd -e $FROM -x ffmpeg -i {} -c:v copy -c:a copy -y {.}.$TO
+				fd -e $FROM -x rm {}
+				;;
+			mpeg)
+				fd -e $FROM -x ffmpeg -i {} -target pal-dvd -ps 2000000000 -aspect 16:9 {.}.$TO
+				fd -e $FROM -x rm {}
+				;;
+			*)
+				echo "Converting from $TO to $FROM is not currently supported"
+				;;
+			esac
+			;;
+		flac)
+			case $TO in
+			opus)
+				fd -e $FROM -x ffmpeg -i {} -c:a libopus {.}.$TO
+				fd -e $FROM -x rm {}
+				;;
+			*)
+				echo "Converting from $TO to $FROM is not currently supported"
+				;;
+			esac
+			;;
+		flv)
+			case $TO in
+			mp4)
+				fd -e $FROM -x ffmpeg -i {} -c:v libx264 {.}.$TO
+				fd -e $FROM -x rm {}
+				;;
+			mpeg)
+				fd -e $FROM -x ffmpeg -i {} {.}.$TO
+				fd -e $FROM -x rm {}
+				;;
+			*)
+				echo "Converting from $TO to $FROM is not currently supported"
+				;;
+			esac
+			;;
+		jpg)
+			case $TO in
+			png)
+				fd -e $FROM -x convert {} {.}.$TO
+				fd -e $FROM -x rm {}
+				;;
+			webp)
+				fd -e $FROM -x convert {} {.}.$TO
+				fd -e $FROM -x rm {}
+				;;
+			*)
+				echo "Converting from $TO to $FROM is not currently supported"
+				;;
+			esac
+			;;
+		mkv)
+			case $TO in
+			mp4)
+				fd -e $FROM -x ffmpeg -i {} -strict experimental -map 0:0 -map 0:1 -c:v copy -c:a:1 libmp3lame -b:a 192k -ac 6 {.}.$TO
+				fd -e $FROM -x rm {}
+				;;
+			png)
+				fd -e $FROM -x ffmpeg -i {} -codec copy {.}.$TO
+				fd -e $FROM -x rm {}
+				;;
+			*)
+				echo "Converting from $TO to $FROM is not currently supported"
+				;;
+			esac
+			;;
+		mp3)
+			case $TO in
+			wav)
+				fd -e $FROM -x ffmpeg -i {} -acodec pcm_s16le -ac 1 -ar 22050 {.}.$TO
+				fd -e $FROM -x rm {}
+				;;
+			*)
+				echo "Converting from $TO to $FROM is not currently supported"
+				;;
+			esac
+			;;
+		mp4)
+			case $TO in
+			avi)
+				fd -e $FROM -x ffmpeg -i {} {.}.$TO
+				fd -e $FROM -x rm {}
+				;;
+			mp3)
+				fd -e $FROM -x ffmpeg -i {} -vn -ar 44100 -ac 2 -ab 320k -f mp3 {.}.$TO
+				fd -e $FROM -x rm {}
+				;;
+			webm)
+				fd -e $FROM -x ffmpeg -i {} -f webm -c:v libvpx -b:v 1M -acodec libvorbis {.}.$TO
+				fd -e $FROM -x rm {}
+				;;
+			*)
+				echo "Converting from $TO to $FROM is not currently supported"
+				;;
+			esac
+			;;
+		mpg)
+			case $TO in
+			flv)
+				fd -e $FROM -x ffmpeg -i {} -ab 26k -f flv {.}.$TO
+				fd -e $FROM -x rm {}
+				;;
+			*)
+				echo "Converting from $TO to $FROM is not currently supported"
+				;;
+			esac
+			;;
+		png)
+			case $TO in
+			jpg)
+				fd -e $FROM -x convert {} {.}.$TO
+				fd -e $FROM -x rm {}
+				;;
+			webp)
+				fd -e $FROM -x convert {} {.}.$TO
+				fd -e $FROM -x rm {}
+				;;
+			*)
+				echo "Converting from $TO to $FROM is not currently supported"
+				;;
+			esac
+			;;
+		webm)
+			case $TO in
+			mp3)
+				fd -e $FROM -x ffmpeg -i {} -vn -ar 44100 -ac 2 -ab 320k -f mp3 {.}.$TO
+				fd -e $FROM -x rm {}
+				;;
+			mp4)
+				fd -e $FROM -x ffmpeg -i {} -qscale 0 {.}.$TO
+				fd -e $FROM -x rm {}
+				;;
+			*)
+				echo "Converting from $TO to $FROM is not currently supported"
+				;;
+			esac
+			;;
+		webp)
+			case $TO in
+			jpg)
+				fd -e $FROM -x convert {} {.}.$TO
+				fd -e $FROM -x rm {}
+				;;
+			png)
+				fd -e $FROM -x convert {} {.}.$TO
+				fd -e $FROM -x rm {}
+				;;
+			*)
+				echo "Converting from $TO to $FROM is not currently supported"
+				;;
+			esac
+			;;
+		wmv)
+			case $TO in
+			mp4)
+				fd -e $FROM -x ffmpeg -i {} -c:v libx264 -preset ultrafast {.}.$TO
+				fd -e $FROM -x rm {}
+				;;
+			*)
+				echo "Converting from $TO to $FROM is not currently supported"
+				;;
+			esac
+			;;
+		*)
+			echo "Converting from $TO is not currently supported"
+			;;
+		esac
+	else
+		echo "usage: convert <filetypes that need to be converted> <filetype that you want them converted to>"
+	fi
+}
