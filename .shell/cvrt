@@ -1,19 +1,51 @@
 #!/bin/bash
 # Convert all files in directory
 cvrt() {
+	av() {
+		if command -v ffmpeg &> /dev/null; then
+			if [[ -n "$1" && -n "$2" && -n "$3" ]]; then
+				eval "fd -e $1 -x ffmpeg -i {} $2 {.}.$3"
+				fd -e $1 -x rm {}
+			else
+				echo "incorrect number of arguements"
+			fi
+		else
+			echo "Please install ffmpeg to convert $1 to $3"
+			return 1
+		fi
+	}
+
+	img() {
+		if command -v convert &> /dev/null; then
+			if [[ -n "$1" && -n "$2" ]]; then
+				eval "fd -e $1 -x convert {} {}.$2"
+				fd -e $1 -x rm {}
+			else
+				echo "incorrect number of arguements"
+			fi
+		else
+			echo "Please install ImageMagick to convert $1 to $3"
+			return 1
+		fi
+	}
+
 	if [[ -n "$1" && -n "$2" ]]; then
+		if ! command -v fd &> /dev/null; then
+			echo "Please install fd"
+			return 1
+		fi
+
 		FROM=$1
 		TO=$2
+		
 		case $FROM in
 		avi)
 			case $TO in
 			mp4)
-				fd -e $FROM -x ffmpeg -i {} -c:v copy -c:a copy -y {.}.$TO
-				fd -e $FROM -x rm {}
+				av $FROM "-c:v copy -c:a copy -y" $TO
 				;;
 			mpeg)
-				fd -e $FROM -x ffmpeg -i {} -target pal-dvd -ps 2000000000 -aspect 16:9 {.}.$TO
-				fd -e $FROM -x rm {}
+				av $FROM "-target pal-dvd -ps 2000000000 -aspect 16:9" $TO
 				;;
 			*)
 				echo "Converting from $TO to $FROM is not currently supported"
@@ -23,8 +55,7 @@ cvrt() {
 		flac)
 			case $TO in
 			opus)
-				fd -e $FROM -x ffmpeg -i {} -c:a libopus {.}.$TO
-				fd -e $FROM -x rm {}
+				av $FROM "-c:a libopus" $TO
 				;;
 			*)
 				echo "Converting from $TO to $FROM is not currently supported"
@@ -34,12 +65,10 @@ cvrt() {
 		flv)
 			case $TO in
 			mp4)
-				fd -e $FROM -x ffmpeg -i {} -c:v libx264 {.}.$TO
-				fd -e $FROM -x rm {}
+				av $FROM "-c:v libx264" $TO
 				;;
 			mpeg)
-				fd -e $FROM -x ffmpeg -i {} {.}.$TO
-				fd -e $FROM -x rm {}
+				av $FROM " " $TO
 				;;
 			*)
 				echo "Converting from $TO to $FROM is not currently supported"
@@ -48,13 +77,8 @@ cvrt() {
 			;;
 		jpg)
 			case $TO in
-			png)
-				fd -e $FROM -x convert {} {.}.$TO
-				fd -e $FROM -x rm {}
-				;;
-			webp)
-				fd -e $FROM -x convert {} {.}.$TO
-				fd -e $FROM -x rm {}
+			png | webp)
+				img $FROM $TO
 				;;
 			*)
 				echo "Converting from $TO to $FROM is not currently supported"
@@ -64,12 +88,10 @@ cvrt() {
 		mkv)
 			case $TO in
 			mp4)
-				fd -e $FROM -x ffmpeg -i {} -strict experimental -map 0:0 -map 0:1 -c:v copy -c:a:1 libmp3lame -b:a 192k -ac 6 {.}.$TO
-				fd -e $FROM -x rm {}
+				av $FROM "-strict experimental -map 0:0 -map 0:1 -c:v copy -c:a:1 libmp3lame -b:a 192k -ac 6" $TO
 				;;
 			png)
-				fd -e $FROM -x ffmpeg -i {} -codec copy {.}.$TO
-				fd -e $FROM -x rm {}
+				av $FROM "-codec copy" $TO
 				;;
 			*)
 				echo "Converting from $TO to $FROM is not currently supported"
@@ -79,8 +101,7 @@ cvrt() {
 		mp3)
 			case $TO in
 			wav)
-				fd -e $FROM -x ffmpeg -i {} -acodec pcm_s16le -ac 1 -ar 22050 {.}.$TO
-				fd -e $FROM -x rm {}
+				av $FROM "-acodec pcm_s16le -ac 1 -ar 22050" $TO
 				;;
 			*)
 				echo "Converting from $TO to $FROM is not currently supported"
@@ -90,16 +111,13 @@ cvrt() {
 		mp4)
 			case $TO in
 			avi)
-				fd -e $FROM -x ffmpeg -i {} {.}.$TO
-				fd -e $FROM -x rm {}
+				av $FROM " " $TO
 				;;
 			mp3)
-				fd -e $FROM -x ffmpeg -i {} -vn -ar 44100 -ac 2 -ab 320k -f mp3 {.}.$TO
-				fd -e $FROM -x rm {}
+				av $FROM "-vn -ar 44100 -ac 2 -ab 320k -f mp3" $TO
 				;;
 			webm)
-				fd -e $FROM -x ffmpeg -i {} -f webm -c:v libvpx -b:v 1M -acodec libvorbis {.}.$TO
-				fd -e $FROM -x rm {}
+				av $FROM "-f webm -c:v libvpx -b:v 1M -acodec libvorbis" $TO
 				;;
 			*)
 				echo "Converting from $TO to $FROM is not currently supported"
@@ -109,8 +127,7 @@ cvrt() {
 		mpg)
 			case $TO in
 			flv)
-				fd -e $FROM -x ffmpeg -i {} -ab 26k -f flv {.}.$TO
-				fd -e $FROM -x rm {}
+				av $FROM "-ab 26k -f flv" $TO
 				;;
 			*)
 				echo "Converting from $TO to $FROM is not currently supported"
@@ -119,13 +136,8 @@ cvrt() {
 			;;
 		png)
 			case $TO in
-			jpg)
-				fd -e $FROM -x convert {} {.}.$TO
-				fd -e $FROM -x rm {}
-				;;
-			webp)
-				fd -e $FROM -x convert {} {.}.$TO
-				fd -e $FROM -x rm {}
+			jpg | webp)
+				img $FROM $TO
 				;;
 			*)
 				echo "Converting from $TO to $FROM is not currently supported"
@@ -135,12 +147,10 @@ cvrt() {
 		webm)
 			case $TO in
 			mp3)
-				fd -e $FROM -x ffmpeg -i {} -vn -ar 44100 -ac 2 -ab 320k -f mp3 {.}.$TO
-				fd -e $FROM -x rm {}
+				av $FROM "-vn -ar 44100 -ac 2 -ab 320k -f mp3" $TO
 				;;
 			mp4)
-				fd -e $FROM -x ffmpeg -i {} -qscale 0 {.}.$TO
-				fd -e $FROM -x rm {}
+				av $FROM "-qscale 0" $TO
 				;;
 			*)
 				echo "Converting from $TO to $FROM is not currently supported"
@@ -149,13 +159,8 @@ cvrt() {
 			;;
 		webp)
 			case $TO in
-			jpg)
-				fd -e $FROM -x convert {} {.}.$TO
-				fd -e $FROM -x rm {}
-				;;
-			png)
-				fd -e $FROM -x convert {} {.}.$TO
-				fd -e $FROM -x rm {}
+			jpg | png)
+				img $FROM $TO
 				;;
 			*)
 				echo "Converting from $TO to $FROM is not currently supported"
@@ -165,8 +170,7 @@ cvrt() {
 		wmv)
 			case $TO in
 			mp4)
-				fd -e $FROM -x ffmpeg -i {} -c:v libx264 -preset ultrafast {.}.$TO
-				fd -e $FROM -x rm {}
+				av $FROM "-c:v libx264 -preset ultrafast" $TO
 				;;
 			*)
 				echo "Converting from $TO to $FROM is not currently supported"
@@ -179,5 +183,6 @@ cvrt() {
 		esac
 	else
 		echo "usage: convert <filetypes that need to be converted> <filetype that you want them converted to>"
+		return 1
 	fi
 }
